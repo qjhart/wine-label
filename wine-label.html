@@ -1,0 +1,144 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="wine-label-part.html">
+<link rel="import" href="wine-label-ttb.html">
+
+<!--
+`wine-label`
+Polymer element to deliver wine label information via simple graphical interface.  This is a general purpose
+tag that needs to be instantiated with an image and appropriate wine-label-parts.
+
+> `wine-label` is in alpha.  Please use with caution.
+
+In the normal usage, a `wine-label` element takes as input an image, and a set of label parts.  
+The element displays the image, and as the user mouses over the image, highlighted regions
+of the image are shown, corresponding to a label part.  On focus, the description of this part 
+is made for the user.
+
+Here is a basic example:
+
+		<wine-label img="label.png">
+		<wine-label-part overview part="Overview" > 
+			<p>Time to learn about wine labels!</p>
+		</wine-label-part>
+		<wine-label-part brand part="Brand Name" ul="20,20" size="100,20" > 
+			<p>Brand Names tell us who made the wine.</p>
+		</wine-label-part>
+		</wine-label>   
+
+Note that the order of the `wine-label-parts` is also the default tabbing order for the element.
+
+@element wine-label
+@demo demo/napavinters.html 
+@demo demo/index.html
+-->
+
+<dom-module id="wine-label">
+
+    <!-- Defines the element's style and local DOM -->
+    <template>
+        <style>
+            :host {
+                display: block;
+                padding: 16px;
+            }
+            
+            .label {
+                position: relative;
+            }
+            
+            :host ::content div.partDiv {
+                position: absolute;
+                border: 1px solid blue;
+                border-radius: 3px;
+            }
+            
+            :host ::content div.partDiv:hover {
+                opacity: 0.25;
+                background-color: yellow;
+            }
+            :host ::content div.partDiv:focus {
+                opacity: 0.50;
+                background-color: yellow;
+            }
+
+        </style>
+
+        <div id="imageDiv" class="label">
+            <img src=[[img]]>
+        </div>
+        <content></content>
+    </template>
+    <!-- Creates the element's prototype and registers it -->
+    <script>
+    Polymer({
+    is: 'wine-label',
+    attached: function() {
+        var iDiv=this.$.imageDiv;
+        console.log('image_div:'+iDiv);
+        var children=Polymer.dom(this).children;
+
+        var emptyDivs=[];
+
+        var that=this;
+
+        function focused(e) {
+            var partFor=e.target.attributes.partFor.value;
+            children.forEach(function (c){
+                c.style.display=(c.id===partFor)?'block':'none';
+            });
+        }
+
+         function blured(e) {
+            var partFor=e.target.attributes.partFor.value;
+            children.forEach(function (c){
+                if (c.id===partFor) {
+                    c.style.display='none';
+                }
+            });
+            emptyDivs.forEach(function (c){
+                 c.style.display='block';
+            });
+        }
+     
+        children.forEach(function(c){
+            var partDiv;
+            var attr;
+
+            var ul=c.getAttribute('ul');
+            var size=c.getAttribute('size');
+            if (ul && size) {
+                partDiv=document.createElement('div');
+            
+                attr=document.createAttribute('partFor');
+                attr.value=c.id;
+                partDiv.setAttributeNode(attr);
+
+                attr=document.createAttribute('class');
+                attr.value='partDiv';
+                partDiv.setAttributeNode(attr);
+
+                attr=document.createAttribute('tabindex');
+                attr.value=0;
+                partDiv.setAttributeNode(attr);
+
+               partDiv.addEventListener('focus',focused);
+               partDiv.addEventListener('blur',blured);
+
+                ul=ul.split(',');
+                size=size.split(',');
+                partDiv.style.left=ul[0]+'px';
+                partDiv.style.top=ul[1]+'px';
+                partDiv.style.width=size[0]+'px';
+                partDiv.style.height=size[1]+'px';
+                c.style.display='none';
+                iDiv.appendChild(partDiv);
+            } else {
+                emptyDivs.push(c);
+             }
+        });
+    },
+   route: Object
+    });
+  </script>
+
+</dom-module>

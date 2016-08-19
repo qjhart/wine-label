@@ -1,0 +1,49 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<!--
+`wine-label-part` is an element to describe one portion of a wine label.  The `wine-label-part` includes
+the label part, as the `part` property, as well as a description of this part.  In addition, the element 
+describes where on the image this label is with the `ul` and `size` parameters.  If the `ul` parameters does
+not exist, the then `wine-label-part` is shown whenever no other part is selected.   Regions can overlap, in which case multiple `wine-label-part`s are displayed.
+
+An example of a `wine-label-part` is shown below:
+
+      <wine-label-part overview part="Overview" > 
+        <p>Time to learn about wine labels!</p>
+      </wine-label-part>
+
+This example includes a bounding box on the area to highlight on the image.
+
+      <wine-label-part brand part="Brand Name" ul="20,20" size="100,20" > 
+        <p>Brand Names tell us who made the wine.</p>
+      </wine-label-part>
+
+@element wine-label-part
+@demo demo/label-part.html 
+-->
+
+<dom-module id="wine-label-part">
+
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <div class="card">
+      <h1><span id="part">[[part]]</span></h1>
+      <content></content>
+    </div>
+  </template>
+
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+    is: 'wine-label-part',
+    properties: {
+      part: {
+	      type: String,
+	      value: "Overview",
+	      reflectToAttribute: true	
+	    },
+    }
+  });
+  </script>
+
+</dom-module>

@@ -1,0 +1,34 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>wine-label-part test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../wine-label.html">
+  </head>
+  <body>
+
+    <test-fixture id="basic">
+      <template>
+        <wine-label-part foo part="FOO" ul="0,0" size="100,100">
+           <p>This is a test of a single label part</p>
+        </wine-label-part>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('wine-label', function() {
+
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'wine-label-part');
+        });
+
+      });
+    </script>
+  </body>
+</html>
