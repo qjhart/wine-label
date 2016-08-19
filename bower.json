@@ -4,7 +4,7 @@
   "main": [
     "wine-label.html",
     "wine-label-part.html",
-    "wine-label-ttb.html",
+    "wine-label-ttb.html"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0"
