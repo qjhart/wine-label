@@ -64,7 +64,7 @@ Note that the order of the `wine-label-parts` is also the default tabbing order 
         </style>
 
         <div id="imageDiv" class="label">
-            <img src=[[img]]>
+            <img src=[[imgResolved]]>
         </div>
         <content></content>
     </template>
@@ -72,6 +72,22 @@ Note that the order of the `wine-label-parts` is also the default tabbing order 
     <script>
     Polymer({
     is: 'wine-label',
+
+    properties : {
+        imgResolved: {
+            type: String,
+            computed: 'computeImgUrl(img)'
+        }
+    },
+
+    computeImgUrl : function() {
+        return this.resolveUrl(this.img);
+    },
+
+    // Because Ive dumped the label-part making here, you cant currently
+    // dynamically update the wine-label.  This should be replaced with
+    // and add and remove function.  For now, I play it safe by keeping 
+    // track of the static function as attached.
     attached: function() {
         var iDiv=this.$.imageDiv;
         console.log('image_div:'+iDiv);
@@ -122,7 +138,7 @@ Note that the order of the `wine-label-parts` is also the default tabbing order 
                 partDiv.setAttributeNode(attr);
 
                partDiv.addEventListener('focus',focused);
-               partDiv.addEventListener('blur',blured);
+               partDiv.addEventListener('blur', blured.bind(this));
 
                 ul=ul.split(',');
                 size=size.split(',');

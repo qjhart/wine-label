@@ -4,9 +4,17 @@
   "main": [
     "wine-label.html"
   ],
+  "authors" : [
+    "Quinn Hart <qjhart@ucdavis.edu>"
+  ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0"
   },
+  "ignore": [
+    "node_modules",
+    "test",
+    "demo"
+  ],
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
