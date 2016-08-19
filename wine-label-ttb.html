@@ -21,7 +21,7 @@ The label can be used as follows:
 <dom-module id="wine-label-ttb">
   <template>
 
-<wine-label img="label-ttb.png">    
+<wine-label id="label-img" img=[[defImg]]>    
 <wine-label-part id="overview" part="WINE LABELING REGULATIONS">
 <p>As consumers become more adventuresome in their wine selections, they look to the label for more information.
   What makes one wine different from another?  What is the dominant grape in the wine? Where are those grapes grown? 
@@ -152,9 +152,18 @@ bottled in quantities of even liters. No other sizes may be bottled.</p>
 
   <script>
     Polymer({
-
       is: 'wine-label-ttb',
+      properties: {
+        defImg: {
+	      type: String,
+	      value: "foo.png",
+	      reflectToAttribute: true	
+        },
+      },
+      ready: function() {
+        this.defImg=this.resolveUrl("label-ttb.png");
 
+      }
     });
   </script>
 </dom-module>

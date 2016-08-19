@@ -64,7 +64,7 @@ Note that the order of the `wine-label-parts` is also the default tabbing order 
         </style>
 
         <div id="imageDiv" class="label">
-            <img src=[[imgResolved]]>
+            <img src=[[img]]>
         </div>
         <content></content>
     </template>
@@ -74,14 +74,6 @@ Note that the order of the `wine-label-parts` is also the default tabbing order 
     is: 'wine-label',
 
     properties : {
-        imgResolved: {
-            type: String,
-            computed: 'computeImgUrl(img)'
-        }
-    },
-
-    computeImgUrl : function() {
-        return this.resolveUrl(this.img);
     },
 
     // Because Ive dumped the label-part making here, you cant currently
