@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="wine-label-part.html">
+<!-- Allows discovery from document tools -->
 <link rel="import" href="wine-label-ttb.html">
 
 <!--
@@ -41,26 +42,26 @@ Note that the order of the `wine-label-parts` is also the default tabbing order 
                 display: block;
                 padding: 16px;
             }
-            
+                        
             .label {
                 position: relative;
             }
             
-            :host ::content div.partDiv {
+            :host::content div.partDiv {
                 position: absolute;
-                border: 1px solid blue;
+                border: 1px solid #3f51b5;
                 border-radius: 3px;
             }
             
-            :host ::content div.partDiv:hover {
+            :host::content div.partDiv:hover {
                 opacity: 0.25;
-                background-color: yellow;
+                background-color: #3f51b5;
             }
-            :host ::content div.partDiv:focus {
+            
+            :host::content div.partDiv:focus {
                 opacity: 0.50;
-                background-color: yellow;
+                background-color: #3f51b5;
             }
-
         </style>
 
         <div id="imageDiv" class="label">
