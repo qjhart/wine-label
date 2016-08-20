@@ -91,14 +91,14 @@ Note that the order of the `wine-label-parts` is also the default tabbing order 
         var that=this;
 
         function focused(e) {
-            var partFor=e.target.attributes.partFor.value;
+            var partFor=e.target.attributes.part_for.value;
             children.forEach(function (c){
                 c.style.display=(c.id===partFor)?'block':'none';
             });
         }
 
          function blured(e) {
-            var partFor=e.target.attributes.partFor.value;
+            var partFor=e.target.attributes.part_for.value;
             children.forEach(function (c){
                 if (c.id===partFor) {
                     c.style.display='none';
@@ -118,7 +118,7 @@ Note that the order of the `wine-label-parts` is also the default tabbing order 
             if (ul && size) {
                 partDiv=document.createElement('div');
             
-                attr=document.createAttribute('partFor');
+                attr=document.createAttribute('part_for');
                 attr.value=c.id;
                 partDiv.setAttributeNode(attr);
 
