@@ -1,0 +1,69 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>wine-label test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../wine-label.html">
+
+    <style>
+      .inside {
+      text-align: center;
+      float: right;
+      width: 400px;
+      border: 1px solid blue;
+      }
+      </style>
+    
+  </head>
+  <body>
+
+    <div class="inside">
+    <wine-label img="napavinters.jpg">
+      <wine-label-part overview part="Overview" > 
+        <p>Wine labels provide useful information to assist in the selection and appreciation of wine. Different countries
+          have different standards for what information is required on a wine label. In the United States, wine labels
+          are regulated by the Alcohol and Tobacco Tax and Trade Bureau of the U.S. Treasury Department (often referred
+          to as the TTB). Some states such as California have adopted supplemental labeling laws. Napa Valley wineries
+          have historically provided more information than the minimum amount required by law.</p>
+        <p>This infographic and guide will help you understand a wine label like a pro, so you can buy with confidence.</p>
+      </wine-label-part>
+
+      <wine-label-part id="brand" part="Brand Name" ul="56,48" size="234,50">
+        <p>Mandatory. If no brand name is on the label, the bottler's name is considered the brand. It is also useful to
+          refer to the bottler's name if a winery has several brands.</p>
+      </wine-label-part>
+
+    </wine-label>
+</div>
+    <test-fixture id="basic">
+      <template>
+	<wine-label img="napavinters.jpg">
+	  <wine-label-part overview part="Overview" > 
+	    <p>Wine labels provide useful information to assist in the selection and appreciation of wine. Different countries
+	      have different standards for what information is required on a wine label. In the United States, wine labels
+	      are regulated by the Alcohol and Tobacco Tax and Trade Bureau of the U.S. Treasury Department (often referred
+	      to as the TTB). Some states such as California have adopted supplemental labeling laws. Napa Valley wineries
+	      have historically provided more information than the minimum amount required by law.</p>
+	    <p>This infographic and guide will help you understand a wine label like a pro, so you can buy with confidence.</p>
+	  </wine-label-part>
+	</wine-label>
+      </template>
+    </test-fixture>
+    
+    <script>
+     suite('wine-label', function() {
+
+       test('instantiating the element works', function() {
+         var element = fixture('basic');
+         assert.equal(element.is, 'wine-label');
+       });
+
+     });
+    </script>
+  </body>
+</html>

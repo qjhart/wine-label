@@ -45,6 +45,7 @@ Note that the order of the `wine-label-parts` is also the default tabbing order 
             
             .label {
                 position: relative;
+		display: inline-block;
             }
             
             :host::content div.partDiv {
@@ -69,11 +70,12 @@ Note that the order of the `wine-label-parts` is also the default tabbing order 
                 color: #212121;
             }
         </style>
-
+	<div class="wine-label">
         <div id="imageDiv" class="label">
             <img src=[[img]]>
         </div>
         <content></content>
+	</div>
     </template>
     <!-- Creates the element's prototype and registers it -->
     <script>
@@ -89,7 +91,6 @@ Note that the order of the `wine-label-parts` is also the default tabbing order 
     // track of the static function as attached.
     attached: function() {
         var iDiv=this.$.imageDiv;
-        console.log('image_div:'+iDiv);
         var children=Polymer.dom(this).children;
 
         var emptyDivs=[];
@@ -117,7 +118,7 @@ Note that the order of the `wine-label-parts` is also the default tabbing order 
      
         children.forEach(function(c){
             var partDiv;
-            var attr;
+          var attr;
 
             var ul=c.getAttribute('ul');
             var size=c.getAttribute('size');
