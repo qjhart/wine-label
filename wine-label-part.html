@@ -18,6 +18,19 @@ This example includes a bounding box on the area to highlight on the image.
         <p>Brand Names tell us who made the wine.</p>
       </wine-label-part>
 
+### Styling
+
+`<wine-label-part>` provides the following custom properties and mixins
+for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--wine-label-part-radius` | Text box radius | `5px`
+`--wine-label-part-background` | Text box background | `#fff`
+`--wine-label-part-headline-font-size` | Headline font | `22px`
+`--wine-label-part-headline-margin` | Headline margin | `16px 0`
+`--wine-label-part-headline-color` | Headline text color | `#212121`
+
 @element wine-label-part
 @demo demo/label-part.html 
 -->
@@ -28,15 +41,14 @@ This example includes a bounding box on the area to highlight on the image.
       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       padding: 16px;
       margin: 24px;
-      border-radius: 5px;
-      background-color: #fff;
+      border-radius: var(--wine-label-part-radius,5px);
+      background-color: var(--wine-label-part-background,#fff);
       color: #757575;
     }
-    
     h1 {
-      font-size: 22px;
-      margin: 16px 0;
-      color: #212121;
+      font-size: var(--wine-label-part-headline-font-size,22px);
+      margin: var(--wine-label-part-headline-margin,16px 0);
+      color: var(--wine-label-part-headline-color,#212121);
     }
   </style>
   <!-- Defines the element's style and local DOM -->
