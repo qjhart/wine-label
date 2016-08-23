@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>wine-label-part demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../wine-label-ttb.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic wine-label-part Demo</h3>
+      <demo-snippet>
+        <template>
+          <wine-label-part id="brand" part="Brand Name" ul="56,48" size="234,50">
+            <p>Mandatory. If no brand name is on the label, the bottler's name is considered the brand. It is also useful to
+              refer to the <i>bottler's name</i> if a winery has several brands.</p>
+          </wine-label-part>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>
