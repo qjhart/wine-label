@@ -151,11 +151,32 @@ Custom property | Description | Default
     /* TODO: Add functional `wine-label-part` deletion.  This will delete the boxes as well.
     */
     deleteWineLabelPart: function(label_part) {}, 
+    onTouchEnd: function(e) {
+      console.log('OnTouchEnd');
+        var children=Polymer.dom(this).children;
+        var partFor=e.target.attributes.part_for.value;
+        children.forEach(function (c){
+            c.style.display=(c.id===partFor)?'block':'none';
+        });
+    },
+    blured: function(e) {
+        var children=Polymer.dom(this).children;
+        var partFor=e.target.attributes.part_for.value;
+        children.forEach(function (c){
+            if (c.id===partFor) {
+                c.style.display='none';
+            }
+        });
+        emptyDivs.forEach(function (c){
+              c.style.display='block';
+        });
+    },
+
     // Because Ive dumped the label-part making here, you cant currently
     // dynamically update the wine-label.  This should be replaced with
     // and add and remove function.  For now, I play it safe by keeping 
     // track of the static function as attached.
-    attached: function() {
+    ready: function() {
         var iDiv=this.$.imageDiv;
         var children=Polymer.dom(this).children;
 
@@ -170,17 +191,21 @@ Custom property | Description | Default
             });
         }
 
-         function blured(e) {
-            var partFor=e.target.attributes.part_for.value;
-            children.forEach(function (c){
-                if (c.id===partFor) {
-                    c.style.display='none';
-                }
-            });
-            emptyDivs.forEach(function (c){
-                 c.style.display='block';
-            });
+        function blured(e) {
+          var partFor=e.target.attributes.part_for.value;
+          children.forEach(function (c){
+              if (c.id===partFor) {
+                  c.style.display='none';
+              }
+          });
+          emptyDivs.forEach(function (c){
+                c.style.display='block';
+          });
         }
+
+        function onTouchEnd(e) {
+           e.target.focus();
+         }
      
         children.forEach(function(c){
             var partDiv;
@@ -204,7 +229,8 @@ Custom property | Description | Default
                 attr.value=0;
                 partDiv.setAttributeNode(attr);
 
-               partDiv.addEventListener('focus',focused);
+               partDiv.addEventListener('focus',focused.bind(this));
+               partDiv.addEventListener('touchend',onTouchEnd);
                partDiv.addEventListener('blur', blured.bind(this));
 
                // How about I get the padding and add it here? 
